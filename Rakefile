@@ -1,6 +1,9 @@
 require 'engineering'
 
-WALL_HEIGHT = 101.inch
+WALL_HEIGHT = 108.5.inch
+BATHROOM_WALL_HEIGHT = 101.inch
+KITCHEN_WALL_HEIGHT = 95.inch
+MIDLEVEL_WALL_HEIGHT = 86.5.inches
 WALL_THICKNESS = 6.inch
 
 X = Vector[1,0,0]
