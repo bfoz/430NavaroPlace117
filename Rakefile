@@ -1,5 +1,7 @@
 require 'engineering'
 
+require_relative 'firstfloor'
+
 WALL_HEIGHT = 108.5.inch
 BATHROOM_WALL_HEIGHT = 101.inch
 KITCHEN_WALL_HEIGHT = 95.inch
