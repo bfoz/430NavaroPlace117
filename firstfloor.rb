@@ -11,6 +11,21 @@ model :FirstFloorSlab do
 
     extrude SLAB_HEIGHT do
 	polygon do
+	    start_at	[0, -6.inch]
+	    right	204.inch
+	    up		338.312.inch
+	    left	161.125.inch
+	    up		10.inch
+	    left	38.5.inch
+	    down	3.5.inch
+	    left	75.125.inch
+	    down	368.092.inch
+	    right	62.inch
+	    up		23.28.inch
+	end
+
+	# Cutout for the recessed part of the floor
+	polygon do
 	    start_at	[-0.875, 0]
 	    up		43.inch
 	    move	-26.25.inch*Math.cos(45*Math::PI/180), 26.25.inch*Math.sin(45*Math::PI/180)
@@ -19,14 +34,7 @@ model :FirstFloorSlab do
 	    up		8.125.inch
 	    up		25.inch
 	    right	(16*12 + 26.5).inch
-	    up		(109.875 - (10-3.5)).inch
-	    left	room_width - 75.125 - 26.5 + drywall_overhang
-	    up		10.inch
-	    left	26.5.inch
-	    down	3.5.inch
-	    left	(75.125 + 0.825).inch
-	    down	(109.875 + 25).inch
-	    move_vertical_to 0
+	    down	222.937.inch
 	end
     end
 end
