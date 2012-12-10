@@ -74,6 +74,11 @@ model :FirstFloorWalls do
 	push inner_wall.outset(6.inch)
 	push inner_wall
     end
+
+    # The weird bump in the wall
+    extrude 53.inch, :origin => [-64.72.inch, (332.812 - 85.375).inch] do
+    	rectangle [0,0], [6.75.inch, 85.375.inch]
+    end
 end
 
 model :FirstFloor  do
