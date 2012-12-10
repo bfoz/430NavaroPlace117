@@ -1,7 +1,12 @@
 require 'engineering'
 
+X = Vector[1,0,0]
+Y = Vector[0,1,0]
+Z = Vector[0,0,1]
+
 SLAB_HEIGHT = 4.25.inch
 wall_height = 95.5.inch
+wall_thickness = 6.inch
 
 room_width = (16*12 + 70.75).inch
 drywall_overhang = 0.825.inch
@@ -71,13 +76,18 @@ end
 
 model :FirstFloorWalls do
     extrude wall_height do
-	push inner_wall.outset(6.inch)
+	push inner_wall.outset(wall_thickness)
 	push inner_wall
     end
 
     # The weird bump in the wall
     extrude 53.inch, :origin => [-64.72.inch, (332.812 - 85.375).inch] do
     	rectangle [0,0], [6.75.inch, 85.375.inch]
+    end
+
+    # The cutout for the garage door
+    extrude wall_thickness, :origin => [3.015.inch,0,0], :x => X, :y => Z do
+        rectangle [0,0], [(16*12).inch, (7*12).inch]
     end
 end
 
