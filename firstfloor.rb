@@ -58,12 +58,14 @@ inner_wall = Polygon.build do
     right	5.inch		# Leaving the understair closet
     up		8.125.inch
     left	45.75.inch
-    up		(109.875 + 25).inch
+    up		(109.875 + 25 - 80.5).inch
+    right       2.5.inch
+    up          80.5.inch
     right	75.125.inch
     up		3.5.inch
     right	26.5.inch
     down	10.inch
-    right	(16*12 + 70.75 - 75.125 - 26.5).inch
+    right	(16*12 + 70.75 - 75.125 - 2.5 - 26.5).inch
     move_vertical_to 0
 end
 
