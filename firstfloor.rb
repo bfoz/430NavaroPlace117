@@ -105,6 +105,19 @@ model :FirstFloor  do
     push FirstFloorSlab.new
 
     group :origin => [0, 0, SLAB_HEIGHT] do
-    	push FirstFloorWalls.new
+	push FirstFloorWalls.new
+
+        # Overhead beam
+        extrude 18.inch, :origin => [-18.562.inch, 143.5.inch, wall_height] do
+            rectangle [0,0], [216.592.inch, 8.inch]
+        end
+
+        extrude 7.25.inch, :origin => [(198.03-108.75).inch, (143.5-8.5).inch, wall_height] do
+            rectangle [0,0], [108.75.inch, 8.5.inch]
+        end
+
+        extrude 3.5.inch, :origin => [-18.562.inch, (143.5+8).inch, wall_height] do
+            rectangle [0,0], [216.592.inch, 14.inch]
+        end
     end
 end
