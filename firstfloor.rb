@@ -89,6 +89,16 @@ model :FirstFloorWalls do
     extrude wall_thickness, :origin => [3.015.inch,0,0], :x => X, :y => Z do
         rectangle [0,0], [(16*12).inch, (7*12).inch]
     end
+
+    # The cutout for the door from the stairwell to the garage
+    extrude 4.47.inch, :origin => [-4.47.inch, 5.75.inch], :x => Y, :y => Z do
+        rectangle [0,0], [30.inch, 80.inch]
+    end
+
+    # The cutout for the front door
+    extrude wall_thickness, :origin => [-(14.72+4.5).inch, -23.28.inch], :x => -X, :y => Z do
+        rectangle [0,0], [36.inch, 81.inch]
+    end
 end
 
 model :FirstFloor  do
