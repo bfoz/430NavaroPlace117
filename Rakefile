@@ -181,8 +181,6 @@ model :ThirdFloor do
 	outer_wall = inner_wall.outset(WALL_THICKNESS)
 	push outer_wall
 	push inner_wall
-#	push Polygon.new *(inner_wall.vertices), *(outer_wall.vertices.reverse)
-
     end
 
     # The ledge at the top of the stairs
@@ -200,7 +198,7 @@ model :ThirdFloor do
     	master_bathroom_window_width = 22.875.inch
     	master_bathroom_window_height = 23.inch
 
-	    # The drop ceiling in the master bathroom
+	# The drop ceiling in the master bathroom
 	extrude 8.75.inch, :origin => [0,0, WALL_HEIGHT-8.75.inch] do
 	    polygon do
 		start_at	[-83.375, 95.965.inch]
@@ -219,13 +217,11 @@ model :ThirdFloor do
 	end
 
 	# Shower windows
-	group :origin => [0, 0, -8.75.inch] do
-	    extrude WALL_THICKNESS, :origin => [-151.625.inch, (141+5.5+master_bathroom_window_width).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height)], :x => -Y, :y => Z do
-		rectangle [0,0], [master_bathroom_window_width, master_bathroom_window_height]
-	    end
-	    extrude WALL_THICKNESS, :origin => [-151.625.inch, (141+5.5+2*master_bathroom_window_width+6.75).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height)], :x => -Y, :y => Z do
-		rectangle [0,0], [master_bathroom_window_width, master_bathroom_window_height]
-	    end
+	extrude WALL_THICKNESS, :origin => [-151.75.inch, (141+5.5+master_bathroom_window_width).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height-8.75.inch)], :x => -Y, :y => Z do
+	    rectangle [0,0], [master_bathroom_window_width, master_bathroom_window_height]
+	end
+	extrude WALL_THICKNESS, :origin => [-151.75.inch, (141+5.5+2*master_bathroom_window_width+6.75).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height-8.75.inch)], :x => -Y, :y => Z do
+	    rectangle [0,0], [master_bathroom_window_width, master_bathroom_window_height]
 	end
     end
 
