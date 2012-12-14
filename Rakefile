@@ -1,4 +1,11 @@
+require 'rake/clean'
 require 'engineering'
+
+BUILD_DIR = 'build'
+
+CLEAN.include(BUILD_DIR)
+
+directory BUILD_DIR
 
 require_relative 'firstfloor'
 require_relative 'thirdfloor'
@@ -13,13 +20,13 @@ model :House do
     end
 end
 
-task :default do
-    DXF.write('FirstFloor.dxf', FirstFloorSketch.new)
-    DXF.write('ThirdFloorplan.dxf', ThirdFloorplanSketch.new)
+task :default => BUILD_DIR do
+    DXF.write(File.join(BUILD_DIR,'FirstFloor.dxf'), FirstFloorSketch.new)
+    DXF.write(File.join(BUILD_DIR,'ThirdFloorplan.dxf'), ThirdFloorplanSketch.new)
 end
 
-task :sketchup do
-    SketchUp.write('House.su', House.new)
-    SketchUp.write('FirstFloor.su', FirstFloor.new)
-    SketchUp.write('ThirdFloor.su', ThirdFloor.new)
+task :sketchup => BUILD_DIR do
+    SketchUp.write(File.join(BUILD_DIR,'House.su'), House.new)
+    SketchUp.write(File.join(BUILD_DIR,'FirstFloor.su'), FirstFloor.new)
+    SketchUp.write(File.join(BUILD_DIR,'ThirdFloor.su'), ThirdFloor.new)
 end
