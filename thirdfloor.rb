@@ -99,17 +99,23 @@ model :ThirdFloor do
     	master_bathroom_window_width = 22.875.inch
     	master_bathroom_window_height = 23.inch
 
-	# The drop ceiling in the master bathroom
-	xextrude 8.75.inch, :origin => [0,0, WALL_HEIGHT-8.75.inch] do
+	# The drop ceiling in the bathroom
+	extrude 8.75.inch, :origin => [0,0, WALL_HEIGHT] do
 	    polygon do
-		start_at	[-83.375, 95.965.inch]
-		move_x	-68.375.inch
-		move_y	62.66.inch + 45.125.inch
-		move_x	121.5.inch
-		move_y	-88.251.inch
-		move_x	-15.25.inch
-		move_y	-19.535.inch
+		start_at    [-45.125.inch, 95.875.inch]
+                up          19.535.inch
+                right	    15.25.inch
+                up	    88.25.inch
+                left	    121.5.inch
+                down	    62.66.inch
+                right	    68.375.inch
+                down	    45.125.inch
 	    end
+	end
+
+	# In the WC
+	xextrude 8.75.inch, :origin => [0,0, WALL_HEIGHT] do
+            rectangle [-151.625.inch, 101.215.inch], Size[63.5.inch, 35.inch]
 	end
 
         # Cutout for the door into the bedroom
