@@ -66,9 +66,9 @@ end
 
 hallway = Polygon.build do
     start_at	[-40.125.inch, -60.785.inch]
-    right	216.875.inch
+    right	197.249.inch
     up		38.285.inch
-    left	165.inch
+    left	145.374.inch
     up		133.25.inch
     left	51.875.inch
 end
