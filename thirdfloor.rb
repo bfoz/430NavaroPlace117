@@ -77,13 +77,13 @@ rooms = [bedroomA, bedroomA_bathroom, bedroomA_closet, hallway, bedroomB, bedroo
 outset_rooms = rooms.map {|p| p.outset WALL_THICKNESS }
 
 model :ThirdFloor do
-    extrude WALL_HEIGHT do
+    extrude length:WALL_HEIGHT do
         push outset_rooms.reduce(:+)
         rooms.each {|r| push r}
     end
 
     # The ledge at the top of the stairs
-    extrude 37.inch do
+    extrude length:37.inch do
 	polygon do
 	    start_at    	[0.inch, -22.5.inch]
 	    move_y	    	(15+22.5).inch
@@ -100,7 +100,7 @@ model :ThirdFloor do
     	master_bathroom_window_height = 23.inch
 
 	# The drop ceiling in the bathroom
-	extrude 8.75.inch, :origin => [0,0, WALL_HEIGHT] do
+	extrude length:8.75.inch, :origin => [0,0, WALL_HEIGHT] do
 	    polygon do
 		start_at    [-45.125.inch, 95.875.inch]
                 up          19.535.inch
@@ -114,35 +114,35 @@ model :ThirdFloor do
 	end
 
 	# In the WC
-	xextrude 8.75.inch, :origin => [0,0, WALL_HEIGHT] do
+	xextrude length:8.75.inch, :origin => [0,0, WALL_HEIGHT] do
             rectangle [-151.625.inch, 101.215.inch], Size[63.5.inch, 35.inch]
 	end
 
         # Cutout for the door into the bedroom
-        extrude 5.inch, :origin => [-40.125.inch, 23.175.inch], :x => Y, :y => Z do
+        extrude length:5.inch, :origin => [-40.125.inch, 23.175.inch], :x => Y, :y => Z do
             rectangle [0,0], [59.291.inch, 81.inch]
         end
 
         # Cutout for the door into the WC
-        extrude 5.125.inch, :origin => [-83.inch, 104.465.inch], :x => Y, :y => Z do
+        extrude length:5.125.inch, :origin => [-83.inch, 104.465.inch], :x => Y, :y => Z do
             rectangle [0,0], [28.5.inch, door_height]
         end
 
         # Cutout for the closet door
-        extrude 4.125.inch, :origin => [-25.75.inch, 141.inch], :x => Y, :y => Z do
+        extrude length:4.125.inch, :origin => [-25.75.inch, 141.inch], :x => Y, :y => Z do
             rectangle [0,0], [31.75.inch, door_height]
         end
 
 	# Master bedroom large window
-	extrude WALL_THICKNESS, :origin => [-189.5.inch, (29.215).inch, 38.25.inch], :x => Y, :y => Z do
+	extrude length:WALL_THICKNESS, :origin => [-189.5.inch, (29.215).inch, 38.25.inch], :x => Y, :y => Z do
 	    rectangle [0,0], [59.inch, 58.25.inch]
 	end
 
 	# Shower windows
-	extrude WALL_THICKNESS, :origin => [-151.375.inch, (141+5.5).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height-8.75.inch)], :x => Y, :y => Z do
+	extrude length:WALL_THICKNESS, :origin => [-151.375.inch, (141+5.5).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height-8.75.inch)], :x => Y, :y => Z do
 	    rectangle [0,0], [master_bathroom_window_width, master_bathroom_window_height]
 	end
-	extrude WALL_THICKNESS, :origin => [-151.375.inch, (141+5.5+master_bathroom_window_width+6.75).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height-8.75.inch)], :x => Y, :y => Z do
+	extrude length:WALL_THICKNESS, :origin => [-151.375.inch, (141+5.5+master_bathroom_window_width+6.75).inch, (WALL_HEIGHT-4.inch-master_bathroom_window_height-8.75.inch)], :x => Y, :y => Z do
 	    rectangle [0,0], [master_bathroom_window_width, master_bathroom_window_height]
 	end
     end
@@ -153,27 +153,27 @@ model :ThirdFloor do
         wall_thickness = 5.inch
 
         # Cutout for the door into the bedroom
-        extrude 4.875.inch, :origin => [11.75.inch, 54.inch], :x => Y, :y => Z do
+        extrude length:4.875.inch, :origin => [11.75.inch, 54.inch], :x => Y, :y => Z do
             rectangle [0,0], [30.inch, door_height]
         end
 
     	# Cutout for the door into the bathroom
-    	extrude wall_thickness, :origin => [36.625.inch, 110.75.inch], :x => X, :y => Z do
+    	extrude length:wall_thickness, :origin => [36.625.inch, 110.75.inch], :x => X, :y => Z do
     	    rectangle [0,0], [29.75.inch, door_height]
     	end
 
     	# Cutout for the closet door
-    	extrude wall_thickness, :origin => [80.375.inch, 110.75.inch], :x => X, :y => Z do
+    	extrude length:wall_thickness, :origin => [80.375.inch, 110.75.inch], :x => X, :y => Z do
     	    rectangle [0,0], [82.625.inch, door_height]
     	end
 
     	# Large window
-    	extrude WALL_THICKNESS, :origin => [176.75.inch, (1.5+39.375).inch, 38.25.inch], :x => Y, :y => Z do
+    	extrude length:WALL_THICKNESS, :origin => [176.75.inch, (1.5+39.375).inch, 38.25.inch], :x => Y, :y => Z do
     	    rectangle [0,0], [58.75.inch, 58.25.inch]
     	end
 
     	# Bathroom window
-    	extrude WALL_THICKNESS, :origin => [131.inch, (144.5+17.5).inch, WALL_HEIGHT-3.75.inch-bathroom_window_height], :x => Y, :y => Z do
+    	extrude length:WALL_THICKNESS, :origin => [131.inch, (144.5+17.5).inch, WALL_HEIGHT-3.75.inch-bathroom_window_height], :x => Y, :y => Z do
     	    rectangle [0,0], [22.75.inch, bathroom_window_height]
     	end
     end

@@ -61,7 +61,7 @@ pointA = Point[47.375.inch, 274.75.inch]
 pointB = pointA + Point[0, 49.5]
 
 model :SecondFloor do
-	extrude wall_height do
+	extrude length:wall_height do
         push inner_wall.outset(exterior_wall_thickness) + pantry.outset(exterior_wall_thickness) + closet.outset(exterior_wall_thickness)
         push inner_wall
         push pantry
@@ -69,18 +69,18 @@ model :SecondFloor do
     end
 
     # Kitchen column
-    extrude kitchen_ceiling_height do
-        rectangle   [37.25.inch, (91.75-42.875).inch], Size[14.5.inch, 20.5.inch]
+    extrude length:kitchen_ceiling_height do
+        rectangle   origin:[37.25.inch, (91.75-42.875).inch], size:[14.5.inch, 20.5.inch]
     end
 
     # Kitchen windows
-    extrude exterior_wall_thickness, :origin => [0, -42.875.inch, 31.25], :x => X, :y => Z do
-        rectangle   [7.5.inch,0], Size[28.625.inch, 58.875.inch]
-        rectangle   [(7.5+28.625+6.875).inch, 0], Size[28.625.inch, 58.875.inch]
+    extrude length:exterior_wall_thickness, :origin => [0, -42.875.inch, 31.25], :x => X, :y => Z do
+        rectangle   origin:[7.5.inch,0], size:[28.625.inch, 58.875.inch]
+        rectangle   origin:[(7.5+28.625+6.875).inch, 0], size:[28.625.inch, 58.875.inch]
     end
 
     # Cutout for kitchen pantry door
-    extrude interior_doorjamb_width, :origin => [0, (-6.875-36).inch], :x => Y, :y => Z do
+    extrude length:interior_doorjamb_width, :origin => [0, (-6.875-36).inch], :x => Y, :y => Z do
         rectangle [0,0], [36.inch, 81.25.inch]
     end
 
@@ -89,27 +89,27 @@ model :SecondFloor do
     # Midlevel
     group do
         # Cutout for the closet door
-        extrude interior_doorjamb_width, :origin => [-32.125.inch, 0, midlevel_floor_height], :x => -X, :y => Z do
+        extrude length:interior_doorjamb_width, :origin => [-32.125.inch, 0, midlevel_floor_height], :x => -X, :y => Z do
             rectangle [0,0], [24.5.inch, door_height]
         end
 
         # Bathroom
-        extrude wall_height do
-            rectangle   [0, 40.75], Size[-69.5.inch, 95.125.inch]
+        extrude length:wall_height do
+            rectangle   origin:[0, 40.75], size:[-69.5.inch, 95.125.inch]
         end
 
         # The bathroom floor
-        extrude wall_height-midlevel_floor_height, :origin => [0,0,wall_height] do
+        extrude length:wall_height-midlevel_floor_height, :origin => [0,0,wall_height] do
             push bathroom
         end
 
         # The closet floor
-        extrude midlevel_floor_height, :origin => [0,0,midlevel_floor_height] do
+        extrude length:midlevel_floor_height, :origin => [0,0,midlevel_floor_height] do
             push closet
         end
 
         # The steps between the landing and the kitchen
-        extrude -40.75.inch, :origin => [-69.5.inch, 0, 0], :x => X, :y => Z do
+        extrude length:-40.75.inch, :origin => [-69.5.inch, 0, 0], :x => X, :y => Z do
             polygon do
                 start_at    [0,0]
                 right       (69.5-2).inch
@@ -123,7 +123,7 @@ model :SecondFloor do
         end
 
         # The landing
-        extrude -40.inch, :origin => [-69.5.inch, -22.374.inch], :x => Y, :y => Z do
+        extrude length:-40.inch, :origin => [-69.5.inch, -22.374.inch], :x => Y, :y => Z do
             polygon do
                 start_at    [0,0]
                 right       63.124.inch
@@ -133,29 +133,29 @@ model :SecondFloor do
         end
 
         # Cutout for the bathroom door
-        extrude interior_doorjamb_width, :origin => [-33.5.inch, 40.75.inch, midlevel_floor_height], :x => -X, :y => Z do
+        extrude length:interior_doorjamb_width, :origin => [-33.5.inch, 40.75.inch, midlevel_floor_height], :x => -X, :y => Z do
             rectangle   [0,0], [28.625.inch, door_height]
         end
     end
 
     # The kneewall by the stairs
-    extrude 34.inch, :origin => [-28.inch, 176.25.inch, 0] do
+    extrude length:34.inch, :origin => [-28.inch, 176.25.inch, 0] do
         rectangle [0,0], [29.5.inch, 7.inch]
     end
 
     # Cutout for Sliding door
-    extrude exterior_wall_thickness, :origin => [(154.875-16.75).inch, 274.75.inch], :x => -X, :y => Z do
-        rectangle [0,0], Size[70.75.inch, 93.5.inch]
+    extrude length:exterior_wall_thickness, :origin => [(154.875-16.75).inch, 274.75.inch], :x => -X, :y => Z do
+        rectangle origin:[0,0], size:[70.75.inch, 93.5.inch]
     end
 
     # Cutouts for living room windows
-    extrude exterior_wall_thickness, :origin => [pointB.x-4.95, pointB.y, 26.inch], :x => -X, :y => Z do
-        rectangle [0,0], Size[34.75.inch, 50.inch]
+    extrude length:exterior_wall_thickness, :origin => [pointB.x-4.95, pointB.y, 26.inch], :x => -X, :y => Z do
+        rectangle origin:[0,0], size:[34.75.inch, 50.inch]
     end
-    extrude exterior_wall_thickness, :origin => [pointB.x-4.95-34.75-78-34.75, pointB.y, 26.inch], :x => X, :y => Z do
-        rectangle [0,0], Size[34.75.inch, 50.inch]
+    extrude length:exterior_wall_thickness, :origin => [pointB.x-4.95-34.75-78-34.75, pointB.y, 26.inch], :x => X, :y => Z do
+        rectangle origin:[0,0], size:[34.75.inch, 50.inch]
     end
-    extrude exterior_wall_thickness, :origin => [pointA.x, pointA.y+10+35, 26.inch], :x => -Y, :y => Z do
-        rectangle [0,0], Size[35.inch, 50.inch]
+    extrude length:exterior_wall_thickness, :origin => [pointA.x, pointA.y+10+35, 26.inch], :x => -Y, :y => Z do
+        rectangle origin:[0,0], size:[35.inch, 50.inch]
     end
 end

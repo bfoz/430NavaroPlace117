@@ -14,7 +14,7 @@ drywall_overhang = 0.825.inch
 model :FirstFloorSlab do
     slab_width = room_width.inch + 2*drywall_overhang
 
-    extrude SLAB_HEIGHT do
+    extrude length:SLAB_HEIGHT do
 	polygon do
 	    start_at	[0, -6.inch]
 	    right	204.inch
@@ -78,34 +78,34 @@ end
 outer_wall = inner_wall.outset(wall_thickness) + hallway_inner_wall.outset(wall_thickness)
 
 model :FirstFloorWalls do
-    extrude wall_height do
+    extrude length:wall_height do
 	push outer_wall
 	push inner_wall
 	push hallway_inner_wall
     end
 
     # The weird bump in the wall
-    extrude 53.inch, :origin => [-64.72.inch, (332.812 - 85.375).inch] do
+    extrude length:53.inch, :origin => [-64.72.inch, (332.812 - 85.375).inch] do
         rectangle [0,0], [6.75.inch, 85.375.inch]
     end
 
     # The cutout for the door to the understairs closet
-    extrude 5.inch, :origin => [-26.25.inch*Math.cos(45*Math::PI/180), (26.25.inch*Math.sin(45*Math::PI/180)+43+94)], :x => Y, :y => Z do
+    extrude length:5.inch, :origin => [-26.25.inch*Math.cos(45*Math::PI/180), (26.25.inch*Math.sin(45*Math::PI/180)+43+94)], :x => Y, :y => Z do
         rectangle [0,0], [34.5.inch, 80.inch]
     end
 
     # The cutout for the garage door
-    extrude wall_thickness, :origin => [3.015.inch,0,0], :x => X, :y => Z do
+    extrude length:wall_thickness, :origin => [3.015.inch,0,0], :x => X, :y => Z do
         rectangle [0,0], [(16*12).inch, (7*12).inch]
     end
 
     # The cutout for the door from the stairwell to the garage
-    extrude 4.47.inch, :origin => [-4.47.inch, 5.75.inch], :x => Y, :y => Z do
+    extrude length:4.47.inch, :origin => [-4.47.inch, 5.75.inch], :x => Y, :y => Z do
         rectangle [0,0], [30.inch, 80.inch]
     end
 
     # The cutout for the front door
-    extrude wall_thickness, :origin => [-(14.72+4.5).inch, -23.28.inch], :x => -X, :y => Z do
+    extrude length:wall_thickness, :origin => [-(14.72+4.5).inch, -23.28.inch], :x => -X, :y => Z do
         rectangle [0,0], [36.inch, 81.inch]
     end
 end
@@ -117,15 +117,15 @@ model :FirstFloor  do
 	push FirstFloorWalls.new
 
         # Overhead beam
-        extrude 18.inch, :origin => [-18.562.inch, 143.5.inch, wall_height] do
+        extrude length:18.inch, :origin => [-18.562.inch, 143.5.inch, wall_height] do
             rectangle [0,0], [216.592.inch, 8.inch]
         end
 
-        extrude 7.25.inch, :origin => [(198.03-108.75).inch, (143.5-8.5).inch, wall_height] do
+        extrude length:7.25.inch, :origin => [(198.03-108.75).inch, (143.5-8.5).inch, wall_height] do
             rectangle [0,0], [108.75.inch, 8.5.inch]
         end
 
-        extrude 3.5.inch, :origin => [-18.562.inch, (143.5+8).inch, wall_height] do
+        extrude length:3.5.inch, :origin => [-18.562.inch, (143.5+8).inch, wall_height] do
             rectangle [0,0], [216.592.inch, 14.inch]
         end
     end
