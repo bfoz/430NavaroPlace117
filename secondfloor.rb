@@ -84,6 +84,42 @@ model :SecondFloor do
         rectangle [0,0], [36.inch, 81.25.inch]
     end
 
+    # Kitchen Kneewall
+    kneewall_subcounter_thickness = 2.25.inch
+    kneewall_height = 42.5.inch - kneewall_subcounter_thickness
+    kneewall_width = 6.inch
+    half_angle = (45/2)*Math::PI/180
+    corner_extend_length = kneewall_width * Math.tan(half_angle)
+    kneewall_start_x = -(65.5 + corner_extend_length).inch
+    extrude length:kneewall_height, origin:[142.375.inch, (116.75 + 4.875 + kneewall_width).inch] do
+    	polygon do
+	    start_at	[kneewall_start_x, 0]
+	    move_horizontal_to	0.inch
+	    down	kneewall_width
+	    left	65.5.inch
+	    move	-33.25.inch*Math.cos(45*Math::PI/180), -33.25.inch*Math.sin(45*Math::PI/180)
+	    down	28.75.inch
+	    left	kneewall_width
+	    up		28.75.inch + corner_extend_length
+	end
+    end
+
+    # Kitchen kneewall sub-countertop
+    kneewall_counter_width = 12.inch
+    corner_extend_length = kneewall_counter_width * Math.tan(half_angle)
+    extrude length:kneewall_subcounter_thickness, origin:[142.375.inch, (116.75 + 4.875 + kneewall_counter_width).inch, kneewall_height] do
+	polygon do
+	    start_at	[kneewall_start_x - corner_extend_length, 0]
+	    move_horizontal_to	0.inch
+	    down	kneewall_counter_width
+	    left	65.5.inch
+	    move	-33.25.inch*Math.cos(45*Math::PI/180), -33.25.inch*Math.sin(45*Math::PI/180)
+	    down	28.75.inch
+	    left	kneewall_counter_width
+	    up		28.75.inch + corner_extend_length
+	end
+    end
+
     # Kitchen ceiling
 
     # Midlevel
